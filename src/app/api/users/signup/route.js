@@ -3,6 +3,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/dbConfig/dbConfig";
 import {User} from "@/models/userModel.js"
+import { sendEmail } from "@/helpers/mailer.js";
 connect()
 
 export async function POST(NextRequest){
@@ -31,15 +32,15 @@ export async function POST(NextRequest){
     
             const savedUser = await newUser.save()
             console.log('saved user--',savedUser);
+            
+            //send verification email
 
+            await sendEmail({email, emailType: "VERIFY", userId: savedUser._id})
 
-
-            return NextResponse
-            .json({
-                message: "User signup successfully",
+            return NextResponse.json({
+                message: "User created successfully",
                 success: true,
-                status:200
-                
+                savedUser
             })
         }
         catch(error){

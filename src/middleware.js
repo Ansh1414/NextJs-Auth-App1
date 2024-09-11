@@ -2,18 +2,21 @@ import { NextResponse } from 'next/server'
  
 
 export function middleware(request) {
-    console.log('--middleware executed---'+request.nextUrl.pathname);
+    
   const path = request.nextUrl.pathname;
-  const publicPaths=['/login','/signup','/verifyemail'];
+  const publicPaths=['/login','/login/adminLogin','/login/nonAdminLogin','/signup','/verifyemail'];
+  console.log('--middleware executed---',path);
   const isPublicPath = publicPaths.includes(path); 
 
   const token = request.cookies.get('token')?.value || ''
-
+  
   if(isPublicPath && token) {
+    //dashboard page
     return NextResponse.redirect(new URL('/', request.nextUrl))
   }
 
   if (!isPublicPath && !token) {
+     //login page
     return NextResponse.redirect(new URL('/login', request.nextUrl))
   }
     

@@ -3,7 +3,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/dbConfig/dbConfig";
 import {User} from "@/models/userModel.js"
-
+import jwt from "jsonwebtoken";
 connect()
 
 export async function POST(NextRequest){
@@ -29,17 +29,32 @@ export async function POST(NextRequest){
                 return NextResponse.json({error: "Invalid password"}, {status: 400})
             }
             console.log('Valid password -- ',validPassword);
-            console.log('user info--',user);
+            
 
-
-
-            return NextResponse
-            .json({
+            const tokenData = {
+                id: user._id,
+                username: user.username,
+                email: user.email
+            }
+            //create token
+            const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, {expiresIn: "1d"})
+            console.log('token info--',token);
+            const tokenOptions={
+                httpOnly: true, 
+                secure:true
+            }
+            
+            const response = NextResponse.json({
                 message: "User login successfully",
                 success: true,
                 status:200
                 
             })
+            response.cookies.set("token", token, tokenOptions)
+
+            return response
+            
+            
         }
         catch(error){
             return NextResponse.json({error: error.message}, {status: 500})

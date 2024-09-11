@@ -4,7 +4,8 @@
 import Link from "next/link"
 import React from "react"
 import axios from "axios"
-import {useRouter} from "next/navigation";
+import {useRouter} from "next/navigation"
+import { toast } from "react-hot-toast";
 function page() {
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
@@ -17,11 +18,11 @@ function page() {
       setLoading(true);
       const response = await axios.post("/api/users/login", user);
       console.log("Login success", response.data);
-      //toast.success("Login success");
+      toast.success("Login success");
       router.push("/");
   } catch (error) {
       console.log("Login failed", error.message);
-      //toast.error(error.message);
+      toast.error(error.message);
   } finally{
     setLoading(false);
   }

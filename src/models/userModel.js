@@ -34,7 +34,21 @@ const userSchema=new Schema(
         }],
         refreshToken: {
             type: String
-        }
+        },
+        verifyToken:{
+            type:String
+        },
+        verifyTokenExpiry:{
+            type:Date
+        },
+        isVerfied: {
+            type: Boolean,
+            default: false,
+        },
+        isAdmin: {
+            type: Boolean,
+            default: false,
+        },
            
         
     },
