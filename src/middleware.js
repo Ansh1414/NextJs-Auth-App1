@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server'
- 
+import {publicDomains} from '@/constants/Constants.js' 
 
 export function middleware(request) {
     
   const path = request.nextUrl.pathname;
-  const publicPaths=['/login','/login/adminLogin','/login/nonAdminLogin','/signup','/verifyemail'];
+  console.log('--middleware executed---',publicDomains);
+  const publicPaths=publicDomains;
   console.log('--middleware executed---',path);
   const isPublicPath = publicPaths.includes(path); 
 

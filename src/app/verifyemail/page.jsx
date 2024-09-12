@@ -3,7 +3,7 @@
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-
+import { toast } from "react-hot-toast";
 
 export default function VerifyEmailPage() {
 
@@ -16,9 +16,11 @@ export default function VerifyEmailPage() {
             console.log('--verify email--');
             await axios.post('/api/users/verifyemail', {token})
             setVerified(true);
+            toast.error('Email sent for verification.Kindly verify');
         } catch (error) {
             setError(true);
             console.log(error.reponse.data);
+            toast.error('error in verify User Email');
             
         }
 
@@ -39,9 +41,7 @@ export default function VerifyEmailPage() {
     return(
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
 
-            <h1 className="text-4xl">Verify Email</h1>
-            <h2 className="p-2 bg-orange-500 text-black">{token ? `${token}` : "no token"}</h2>
-
+            
             {verified && (
                 <div>
                     <h2 className="text-2xl">Email Verified</h2>

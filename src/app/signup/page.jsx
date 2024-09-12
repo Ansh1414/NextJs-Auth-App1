@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 
 import Link from "next/link"
-
+import { toast } from "react-hot-toast";
 function page() {
 
   const [load,setLoad]=useState('')
@@ -24,9 +24,11 @@ function page() {
    try{
     const response = await axios.post("/api/users/signup", user);
             console.log("Signup success", response.data);
+            toast.success("SignUp successfuly");
    }
    catch(error){
     console.log('error in signup--',error);
+    toast.error('error in signup');
 
    }
   }
@@ -64,6 +66,7 @@ function page() {
             onChange={(e) => setUser({...user, password: e.target.value})}
             placeholder="password"
             />
+            
             <button
             onClick={onSignup}
             className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">{buttonDisabled ? "No signup" : "Signup"}</button>

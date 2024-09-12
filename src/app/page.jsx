@@ -1,16 +1,36 @@
-"use Client"
-import Link from "next/link";
-import Image from 'next/image';
+"use client"
+
+import axios from 'axios';
+import { useRouter } from 'next/navigation'
+
+
 export default function Home() {
+  const router = useRouter();
+  
+  const handleLogout=async ()=>{
+ 
+    try{
+      const response = await axios.post("/api/users/logout");
+     
+      console.log("change Password success", response.data);
+      router.push('/login')
+    }catch(error){
+      console.log('error--',error);
+    }
+   
+  }
+
   return (
    
     <>
     <div className="mx-auto max-w-7xl px-2 md:px-0">
   <div className="my-4">
     <h1 className="text-3xl font-bold">Our Team</h1>
-    <p className="mt-2 text-gray-500">
+    <p className="mt-2 text-white">
       Hi every one 
       
+      <button className="p-4 rounded-lg text-red-600" onClick={handleLogout}>Logout</button>
+    
     </p>
   </div>
   <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2">
@@ -45,8 +65,6 @@ export default function Home() {
         </div>
       </div>
     </div>
-    
-    <Link href="/signup">Visit SignUp page</Link>
   </div>
 </div>
     </>
