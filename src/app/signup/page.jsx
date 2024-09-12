@@ -4,11 +4,25 @@ import axios from "axios"
 
 import Link from "next/link"
 import { toast } from "react-hot-toast";
+import SignUpForm from "@/components/SignUpForm"
+
+
+
+
 function page() {
+  const [imageIndex, setImageIndex] = useState(0);
+
+  const images = [
+    '/images/ankush.png',
+    '/images/ankita.png'
+];
+
+const changeImage = () => {
+  setImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+};
 
   const [load,setLoad]=useState('')
-  const [loading, setLoading] = useState(false);
-  const [buttonDisabled, setButtonDisabled] = useState(false);
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -18,9 +32,9 @@ function page() {
   console.log('inside useEffect');
 },[load])
   
-  const onSignup=async ()=>{
+  const handleSignup=async (user)=>{
    // setLoad('isLoading'); //to call useEffect again
-   console.log('inside handleFun');
+   console.log('inside handleFun--',user);
    try{
     const response = await axios.post("/api/users/signup", user);
             console.log("Signup success", response.data);
@@ -36,17 +50,17 @@ function page() {
   return (
     <>
 
-<div className="bg-blue-950 flex flex-col items-center justify-center min-h-screen py-2">
+{/* <div className="bg-blue-950 flex flex-col items-center justify-center min-h-screen py-2">
         <h1>{loading ? "Processing" : "Signup"}</h1>
         <hr />
-        <label htmlFor="username">username</label>
+        <label htmlFor="name">name</label>
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="username"
+            id="name"
             type="text"
-            value={user.username}
-            onChange={(e) => setUser({...user, username: e.target.value})}
-            placeholder="username"
+            value={user.name}
+            onChange={(e) => setUser({...user, name: e.target.value})}
+            placeholder="name"
             />
         <label htmlFor="email">email</label>
         <input 
@@ -68,9 +82,13 @@ function page() {
             />
             
             <button
-            onClick={onSignup}
+            onClick={handleSignup}
             className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">{buttonDisabled ? "No signup" : "Signup"}</button>
             <Link href="/login">Visit login page</Link>
+        </div> */}
+
+<div className="bg-white flex flex-col items-center justify-center min-h-screen py-2">
+        <SignUpForm getImage={images[imageIndex]} onCreateAccount={handleSignup}/>
         </div>
       </>
   )

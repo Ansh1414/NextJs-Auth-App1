@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import HeaderNavigation from "@/components/NavBar.jsx";
+import {NavBar} from "@/components/NavBar.jsx";
 
 import { Toaster } from 'react-hot-toast';
 
@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
          <Toaster />
         <div className="flex">
               {/* Sidebar */}
-              <HeaderNavigation/>
+              <NavBar/>
               
               
               {/* Main content */}

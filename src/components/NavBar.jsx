@@ -21,12 +21,16 @@ function NavBar () {
     let menuOptions=
     [
         {
-            pathname:'signup',
-            path:'/signup'
+            pathname:'Home',
+            path:'/'
         },
         {
-            pathname:'login',
-            path:'/login'
+            pathname:'About',
+            path:'/about'
+        },
+        {
+            pathname:'Movies',
+            path:'/movies'
         }
     ]
     
@@ -40,7 +44,7 @@ function NavBar () {
 
 
   
-   if(isPublicPath){
+   if(!isPublicPath){
             return (<aside className="flex w-64 flex-col overflow-y-auto border-r bg-gray-400 px-5 py-8">
                     
             <div className="flex items-center justify-between">
@@ -76,4 +80,4 @@ function NavBar () {
    
 }
 
-export default NavBar
+export {NavBar}
