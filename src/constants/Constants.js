@@ -1,1 +1,1 @@
-export const publicDomains=['/login','/login/adminLogin','/login/nonAdminLogin','/signup','/verifyemail'];
+export const publicDomains=['/login','/login/changePassword','/login/nonAdminLogin','/signup','/verifyemail'];

@@ -10,7 +10,7 @@ export async function POST(NextRequest){
         try{
             
             const reqBody = await NextRequest.json()
-            const {username, email, password} = reqBody
+            const {email, password} = reqBody
 
             console.log('inside api/users/signup route-->',reqBody,' -- ',User);
 
@@ -23,9 +23,9 @@ export async function POST(NextRequest){
             }
             console.log('saved user--');
             const newUser = new User({
-                username,
+                username:email,
                 email,
-                fullName:username,
+                fullName:email,
                 password
             })
             console.log('newUser user--',newUser);
