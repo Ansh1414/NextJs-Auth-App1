@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import {NavBar} from "@/components/NavBar.jsx";
-
+import HamburgerMenuIcon from "@/components/HamburgerMenuIcon.jsx";
 import { Toaster } from 'react-hot-toast';
 
 const geistSans = localFont({
@@ -26,12 +26,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-         <Toaster />
+        <Toaster />
         <div className="flex">
               {/* Sidebar */}
-              <NavBar/>
-              
-              
+              <HamburgerMenuIcon/>
               {/* Main content */}
               <div className="flex-1">
                 {children}

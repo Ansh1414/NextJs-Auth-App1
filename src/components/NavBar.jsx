@@ -57,7 +57,7 @@ function NavBar () {
         
                 <div
                     className={`fixed inset-y-0 left-0 transform transition-transform duration-300 ease-in-out ${
-                    isOpen ? 'translate-x-0' : '-translate-x-full'
+                    isOpen ? 'translate-y-0' : '-translate-x-full'
                     } w-64 bg-white text-white p-4`} onClick={toggleSidebar}>
             <aside className="flex w-64 flex-col overflow-y-auto border-r h-screen px-5 py-8">
             

@@ -2,7 +2,7 @@
 
 
 import React from "react"
-
+import Link from "next/link"
 function page() {
   const [loading, setLoading] = React.useState(false)
   const [user,setUser] = React.useState({email:'',oldpassword:'',newPassword:''})
@@ -26,39 +26,40 @@ function page() {
          <h1>{loading ? "Processing" : "Change Password"}</h1>
        
         <hr />
-    <label htmlFor="email">email</label>
-        <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="email"
-            type="text"
-            value={user.email}
-            onChange={(e) => setUser({...user, email: e.target.value})}
-            placeholder="email"
-            />
+        <label htmlFor="email">email</label>
+          <input 
+          className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+              id="email"
+              type="text"
+              value={user.email}
+              onChange={(e) => setUser({...user, email: e.target.value})}
+              placeholder="email"
+              />
         <label htmlFor="oldpassword">Old Password</label>
-        <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="oldpassword"
-            type="password"
-            value={user.oldpassword}
-            onChange={(e) => setUser({...user, oldpassword: e.target.value})}
-            placeholder="old password"
-            />
+            <input 
+            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+                id="oldpassword"
+                type="password"
+                value={user.oldpassword}
+                onChange={(e) => setUser({...user, oldpassword: e.target.value})}
+                placeholder="old password"
+                />
            
           <label htmlFor="newPassword">New password</label>
             <input 
             className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="newPassword"
-            type="text"
-            value={user.newPassword}
-            onChange={(e) => setUser({...user, newPassword: e.target.value})}
-            placeholder="newPassword"
+                id="newPassword"
+                type="text"
+                value={user.newPassword}
+                onChange={(e) => setUser({...user, newPassword: e.target.value})}
+                placeholder="newPassword"
             />
             
 
-            <button
+          <button
             onClick={handleChangePassword}
             className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Change Password</button>
+          <Link href="/login">Login</Link>
       </div>
       </>
   )
