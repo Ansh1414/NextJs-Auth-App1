@@ -1,7 +1,7 @@
 import mongoose,{Schema} from "mongoose";
 
 const movieSchema=new Schema({
-    name:{
+    moviename:{
         type:String,
         required: true,
         lowecase: true,
@@ -17,6 +17,7 @@ const movieSchema=new Schema({
 })
 console.log('----Movies model schema---');
 
-const Movie=mongoose.model("Movie",movieSchema);
+const Movie=mongoose.models.Movie || mongoose.model("Movie",movieSchema);
+
 
 export {Movie}

@@ -11,6 +11,6 @@ const userMovieSchema=new Schema({
     }
 })
 
-const userMovie=mongoose.Model("userMovie",userMovieSchema);
+const UserMovie=mongoose.models.userMovie || mongoose.Model("userMovie",userMovieSchema);
 
-export {userMovie}
+export {UserMovie}
