@@ -31,6 +31,8 @@ export const config = {
     '/profile',
     '/login/:path*',//run on all paths inside login
     '/signup',
-    '/verifyemail'
+    '/verifyemail',
+    '/movies',
+    '/about'
   ]
 }
