@@ -28,10 +28,6 @@ const userSchema=new Schema(
         avatar:{
             type:String
         },
-        videos:[{
-            type: Schema.Types.ObjectId,
-            ref: "Video"
-        }],
         refreshToken: {
             type: String
         },

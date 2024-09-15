@@ -7,6 +7,8 @@ import axios from "axios"
 import {useRouter} from "next/navigation"
 import { toast } from "react-hot-toast";
 import SignInForm from "./SignInForm"
+import { useDispatch } from "react-redux"
+import { setUserId } from '@/store/userSlice.js'; // Import the setUserId action
 function page() {
 
   const router = useRouter();
@@ -16,7 +18,9 @@ function page() {
   const [showNewPassword, setShowNewPassword] = React.useState(false); // New state for showing/hiding new password field
 
   const [imageIndex, setImageIndex] = useState(0);
-
+ 
+  const dispatch=useDispatch();// Get the dispatch function from Redux
+  
   const images = [
     '/images/ankush.png',
     '/images/ankita.png'
@@ -34,6 +38,9 @@ function page() {
       console.log("Login success", response.data);
       if(response.data.status==200){
         toast.success("Login success");
+         // Dispatch the setUserId action to store the userId in Redux
+        dispatch(setUserId(response.data.userId));
+
         router.push("/");
       }else{
         toast.error(response.data.error)
