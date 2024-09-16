@@ -16,12 +16,14 @@ function NavBar () {
   
    
     const [isOpen, setIsOpen] = useState(false);
+    
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
       };
 
   useEffect(() => {
+    
     // Update the state based on the current pathname
     let menuOptions=
     [
@@ -54,7 +56,7 @@ function NavBar () {
                 <>
                 
                 
-        
+                
                 <div
                     className={`fixed inset-y-0 left-0 transform transition-transform duration-300 ease-in-out ${
                     isOpen ? 'translate-y-0' : '-translate-x-full'

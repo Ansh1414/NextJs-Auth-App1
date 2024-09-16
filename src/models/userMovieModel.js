@@ -1,16 +1,24 @@
 import mongoose,{Schema} from 'mongoose';
 
 const userMovieSchema=new Schema({
-    movie:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Movie'
-    },
-    user:{
+    userId:{
         type:mongoose.Schema.ObjectId,
-        ref:'User'
-    }
+        ref:'User',
+        required: true
+    },
+    movieId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Movie',
+        unique: [true,'Movie already added as your favourite'],
+        required: true
+    },
+    isSelected: {
+        type: Boolean,
+        default: false
+      }
+
 })
 
-const UserMovie=mongoose.models.userMovie || mongoose.Model("userMovie",userMovieSchema);
+const UserMovie=mongoose.models.userMovie || mongoose.model("userMovie",userMovieSchema);
 
 export {UserMovie}

@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/dbConfig/dbConfig";
 import {User} from "@/models/userModel.js"
 import { sendEmail } from "@/helpers/mailer.js";
+
 connect()
 
 export async function POST(NextRequest){

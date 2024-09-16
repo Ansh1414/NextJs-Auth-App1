@@ -9,13 +9,13 @@ import { toast } from "react-hot-toast";
 import SignInForm from "./SignInForm"
 import { useDispatch } from "react-redux"
 import { setUserId } from '@/store/userSlice.js'; // Import the setUserId action
+
+import Loader from '@/components/Loader.js';
+
 function page() {
 
   const router = useRouter();
-  const [loading, setLoading] = React.useState(false)
-  const [user,setUser] = React.useState({email:'',password:''})
-  const [buttonDisabled, setButtonDisabled] = React.useState(false)
-  const [showNewPassword, setShowNewPassword] = React.useState(false); // New state for showing/hiding new password field
+  const [showLoader,setShowLoader]=useState(false)
 
   const [imageIndex, setImageIndex] = useState(0);
  
@@ -32,7 +32,7 @@ function page() {
   }
   const handleLogin=async (user)=>{
     try {
-      setLoading(true);
+      setShowLoader(true);
       const response = await axios.post("/api/users/login", user);
 
       console.log("Login success", response.data);
@@ -49,7 +49,7 @@ function page() {
       console.log("Login failed", error.message);
       toast.error(error.message);
   } finally{
-    setLoading(false);
+    setShowLoader(false);
   }
 
   }
@@ -58,7 +58,10 @@ function page() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-white">
         <hr />
-            <SignInForm onImageClick={handleImageChange} getImage={images[imageIndex]} onSignInAccount={handleLogin}/>
+            <Loader showLoading={showLoader}/>
+            <div className={`${showLoader ? 'hidden' : 'block'}`}>
+              <SignInForm onImageClick={handleImageChange} getImage={images[imageIndex]} onSignInAccount={handleLogin}/>
+            </div> 
         </div> 
     )
 }
