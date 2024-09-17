@@ -53,18 +53,16 @@ const HamburgerMenuIcon = () => {
   return (
     <>
     
-    <div className="m-8 relative">
+    <div className="align-middle">
       {/* Hamburger / Close icon */}
-      <div className="p-4 flex justify-between items-center">
+      <div className="p-4 mt-10 flex justify-between items-center">
         <div onClick={toggleMenu} className="cursor-pointer">
           {isOpen ? (
             <span className="text-3xl"></span> // Close icon
           ) : (
-            <div className="space-y-2">
-              <div className="w-8 h-1 bg-white"></div>
-              <div className="w-8 h-1 bg-white"></div>
-              <div className="w-8 h-1 bg-white"></div>
-            </div>
+            
+             <span className='rounded-2xl p-2 font-bold w-24 h-10 bg-cyan-200 text-black text-xl'>Menu</span>
+          
           )}
         </div>
         <div className="text-xl font-bold"></div>
