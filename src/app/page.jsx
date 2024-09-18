@@ -184,14 +184,17 @@ export default function Home() {
             <div
             className="relative flex h-[342px] w-full flex-col justify-end rounded-[10px] bg-red-300"
             >
+            
             <img
             src={data.coverImage}
             alt=""
             className="z-0 h-full w-full rounded-[10px] object-cover"
+            data-id={data._id} 
+            onClick={()=>router.push(`/movieDetails/${data._id}`)}
             />
-            <div className="absolute bottom-4 left-4">
-            <h1 className="text-xl font-semibold text-white">{data.moviename}</h1>
-            <h6 className="text-base text-white">{data.movieInformation}</h6>
+            <div className="absolute w-full bg-blue-700">
+            <h1 className=" text-xl font-semibold text-white">{data.moviename}</h1>
+            
             </div>
             </div>
             <div data-id={data._id} 

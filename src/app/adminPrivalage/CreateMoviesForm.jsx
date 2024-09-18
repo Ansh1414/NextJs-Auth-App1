@@ -9,7 +9,6 @@ function CreateMoviesForm({onCreateMovie}) {
         movieInformation: "",
     })
     
-  const [file, setFile] = useState(null);
 
 
   return (

@@ -20,7 +20,7 @@ export async function POST(NextRequest){
             const buffer = Buffer.from(bytes);
             console.log('inside api/movies/createMoviesData route process.cwd()-->',process.cwd());
                 // Define the path where the image will be saved
-            const uploadDir = path.join(process.cwd(),'/public/images');
+            const uploadDir = path.join(process.cwd(),'/public/images/MoviesCoverImage');
             const filePath = path.join(uploadDir, file.name);
            
             await  writeFile(filePath,buffer);
@@ -31,7 +31,7 @@ export async function POST(NextRequest){
                 console.log('existing Movie Data--');
                 return NextResponse.json({error: "existing Movie Data--",status:400})
             }
-            let tempFilePath='images/'+file.name;
+            let tempFilePath='images/MoviesCoverImage/'+file.name;
             const newMovie = new Movie({
                 moviename,
                 coverImage:tempFilePath,//filePath,
