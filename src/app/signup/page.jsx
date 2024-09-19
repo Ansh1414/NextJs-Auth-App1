@@ -26,18 +26,34 @@ const handleImageChange = async()=>{
 
   
   useEffect(()=>{
-  console.log('inside useEffect');
-},[load])
+    console.log('inside useEffect');
+  },[load])
   
   const handleSignup=async (user)=>{
    // setLoad('isLoading'); //to call useEffect again
    console.log('inside handleFun--',user);
    
+   const formData = new FormData();
+   formData.append('email', user.email);
+   formData.append('password', user.password);
+   formData.append('username', user.username);
+   
+ 
+   // Append file if it exists
+   if (user.avatar) {
+     formData.append('avatar', user.avatar);
+   }
+   
    try{
-    setShowLoader(true)
-    const response = await axios.post("/api/users/signup", user);
-            console.log("Signup success", response.data);
-            toast.success("SignUp successfuly");
+      setShowLoader(true)
+
+      const response = await axios.post('/api/users/signup', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log("Signup success", response.data);
+      toast.success("SignUp successfuly");
    }
    catch(error){
     console.log('error in signup--',error);

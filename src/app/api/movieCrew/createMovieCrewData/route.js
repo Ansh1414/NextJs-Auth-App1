@@ -13,7 +13,7 @@ export async function POST(NextRequest){
 
             
             const reqBody = await NextRequest.formData();
-
+            
             const personName=reqBody.get('personName');
             const personRole=reqBody.get('personRole');
             const moviename=reqBody.get('movieName');

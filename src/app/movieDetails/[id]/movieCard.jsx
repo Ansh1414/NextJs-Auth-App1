@@ -1,7 +1,7 @@
 // components/MovieCard.js
 
 //import Image from 'next/image';
-
+import {CommentForm} from './commentForm';
 const MovieCard = ({ movie }) => {
     console.log('----',movie.coverImage);
     if(!movie){
@@ -22,6 +22,7 @@ const MovieCard = ({ movie }) => {
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2 text-red-500">{movie.moviename}</div>
         <p className="text-white text-base">{movie.movieInformation}</p>
+        <CommentForm/>
       </div>
       <div className="px-6 py-4">
         <h3 className="font-bold text-lg mb-2 text-red-500">Cast :</h3>
@@ -30,7 +31,7 @@ const MovieCard = ({ movie }) => {
           
           <div key={member._id}  className=" flex flex-col items-center relative group">
             <img
-              className="w-20 h-20 rounded-full transition-transform duration-200 ease-in-out hover:scale-150"
+              className="w-10 h-10 rounded-full transition-transform duration-200 ease-in-out hover:scale-150"
               src={member.personImage}
               alt={member.personName}
               
@@ -49,12 +50,12 @@ const MovieCard = ({ movie }) => {
           
           <div key={member._id}  className=" flex flex-col items-center relative group">
             <img
-              className="w-20 h-20 rounded-full transition-transform duration-200 ease-in-out hover:scale-150"
+              className="w-10 h-10 rounded-full transition-transform duration-200 ease-in-out hover:scale-150"
               src={member.personImage}
               alt={member.personName}
               
             />
-            <div className=" mt-8 opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100 text-center">
+            <div className="mt-8 opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100 text-center">
               <p className="font-semibold text-blue-500">{member.personName}</p>
               <p className="text-gray-600 text-sm">{member.personRole}</p>
             </div>

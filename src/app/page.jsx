@@ -16,7 +16,7 @@ export default function Home() {
   
   const [moviesData,setMoviesData]=useState([]);
   const [storedUserFavMovies, setStoredUserFavMovies] = useState([]);
-  const [userId,setUserId]=useState('')
+  const [userData,setUserData]=useState('')
   const [showLoader,setShowLoader]=useState(true)
   
   
@@ -37,9 +37,12 @@ export default function Home() {
       setShowLoader(true);
       const response = await axios.post("/api/users/fetchUserId", cookieName);
       console.log("Login success", response.data);
-      setUserId(response.data.userId)
+      //response.data.userData._id
+      //response.data.userData.avatar
+    
+      setUserData(response.data.userData)
       
-      return response.data.userId;
+      return response.data.userData._id;
     }catch(error){
       console.log('error in dashboard--',error)
     }
@@ -129,7 +132,7 @@ export default function Home() {
           let userFavMovies=moviesData.map(movie=>(
             {
               movieId: movie._id, // Renaming _id to movieId
-              userId: userId,
+              userId: userData._id,
               isSelected:movie.isSelected
             }
             )
@@ -169,8 +172,15 @@ export default function Home() {
           <div className={`${showLoader ? 'hidden' : 'block mx-auto h-screen max-w-7xl md:px-12'}`}>
           
           <div className="my-4">
-          <button className="flex m-10 p-2 float-end bg-white rounded-lg text-red-600" onClick={handleLogout}>Logout</button>
-          
+          <div className="float-end items-center justify-center">
+          <img
+            src={userData.avatar}
+            alt=""
+            className="flex z-0 w-16 h-16 rounded-lg object-cover"
+           
+            />
+            <button className="flex mt-2 w-16 p-2  bg-white rounded-lg text-red-600" onClick={handleLogout}>Logout</button>
+          </div>
           <h1 className="text-3xl font-bold">Our Team</h1>
           
           <p className="mt-2 text-white">

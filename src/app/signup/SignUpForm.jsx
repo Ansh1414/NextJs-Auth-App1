@@ -7,6 +7,7 @@ function SignUpForm({getImage,onImageClick,onCreateAccount}) {
         email: "",
         password: "",
         username: "",
+        avatar:{}
     })
   return (
     <section>
@@ -163,6 +164,22 @@ function SignUpForm({getImage,onImageClick,onCreateAccount}) {
                       onChange={(e) => setUser({...user, password: e.target.value})}
                       placeholder="password"
                       
+                    ></input>
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="avatar" className="text-base font-medium text-gray-900">
+                    {' '}
+                    Profile Picture{' '}
+                  </label>
+                  <div className="mt-2">
+                    <input
+                       className="text-black flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                       id="avatar"
+                       type="file"
+                       onChange={(e) => setUser({...user, avatar: e.target.files[0]})}
+                       placeholder="avatar"
+                  
                     ></input>
                   </div>
                 </div>
