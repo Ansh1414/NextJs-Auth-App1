@@ -2,7 +2,7 @@
 
 //import Image from 'next/image';
 import {CommentForm} from './commentForm';
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie,userId }) => {
     console.log('----',movie.coverImage);
     if(!movie){
         return (<></>)
@@ -13,7 +13,7 @@ const MovieCard = ({ movie }) => {
     <div className="w-screen h-screen flex flex-col  bg-cyan-80">
        
       <img
-        className="w-11/12 h-1/2 object-cover object-top"
+        className="h-1/2 object-cover object-top"
         src={movie.coverImage}
         alt={movie.moviename}
         
@@ -22,7 +22,7 @@ const MovieCard = ({ movie }) => {
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2 text-red-500">{movie.moviename}</div>
         <p className="text-white text-base">{movie.movieInformation}</p>
-        <CommentForm/>
+        <CommentForm movieId={movie._id} userId={userId}/>
       </div>
       <div className="px-6 py-4">
         <h3 className="font-bold text-lg mb-2 text-red-500">Cast :</h3>

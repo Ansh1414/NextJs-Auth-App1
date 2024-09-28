@@ -9,8 +9,10 @@ import { toast } from "react-hot-toast";
 import SignInForm from "./SignInForm"
 import { useDispatch } from "react-redux"
 import { setUserId } from '@/store/userSlice.js'; // Import the setUserId action
-
+import { getToken,decode,encode } from "next-auth/jwt";
 import Loader from '@/components/Loader.js';
+import { signIn, signOut,getProviders,getSession } from "next-auth/react";
+
 
 function page() {
 
@@ -21,6 +23,8 @@ function page() {
  
   const dispatch=useDispatch();// Get the dispatch function from Redux
   
+  
+
   const images = [
     '/images/ankush.png',
     '/images/ankita.png'
@@ -37,10 +41,8 @@ function page() {
 
       console.log("Login success", response.data);
       if(response.data.status==200){
+       
         toast.success("Login success");
-         // Dispatch the setUserId action to store the userId in Redux
-        dispatch(setUserId(response.data.userId));
-
         router.push("/");
       }else{
         toast.error(response.data.error)

@@ -9,7 +9,6 @@ const userMovieSchema=new Schema({
     movieId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Movie',
-        unique: [true,'Movie already added as your favourite'],
         required: true
     },
     isSelected: {

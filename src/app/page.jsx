@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
-import {fetchUserFavMovies} from '@/helpers/browserStorage.js';
+import {BrowserInfo} from '@/helpers/browserStorage.js';
 import Loader from '@/components/Loader.js';
 export default function Home() {
   
@@ -16,33 +16,22 @@ export default function Home() {
   
   const [moviesData,setMoviesData]=useState([]);
   const [storedUserFavMovies, setStoredUserFavMovies] = useState([]);
-  const [userData,setUserData]=useState('')
+  const [userData,setUserData]=useState({})
   const [showLoader,setShowLoader]=useState(true)
   
   
-  const handleLogout=async ()=>{
-    
-    try{
-      const response = await axios.post("/api/users/logout");
-      
-      console.log("change Password success", response.data);
-      router.push('/login')
-    }catch(error){
-      console.log('error--',error);
-    }
-    
-  }
+  
   async function getCookieByName(cookieName) {
     try{
+      console.log('inside getCookieByName');
       setShowLoader(true);
       const response = await axios.post("/api/users/fetchUserId", cookieName);
       console.log("Login success", response.data);
-      //response.data.userData._id
-      //response.data.userData.avatar
     
-      setUserData(response.data.userData)
+    
+      setUserData(response.data?.userData)
       
-      return response.data.userData._id;
+      return response.data.userData?.userId;
     }catch(error){
       console.log('error in dashboard--',error)
     }
@@ -74,7 +63,7 @@ export default function Home() {
       console.log('storedUserFavMovies ',storedUserFavMovies);
       const fetchedMoviesData=response.data.moviesData;
       
-      const fetchStoredValues=fetchUserFavMovies('userFavMovies');
+      const fetchStoredValues=BrowserInfo('userFavMovies');
       if(!fetchStoredValues){
         fetchUserFavMoviesFromServer(loggedInUserId,fetchedMoviesData)
       }else{
@@ -132,7 +121,7 @@ export default function Home() {
           let userFavMovies=moviesData.map(movie=>(
             {
               movieId: movie._id, // Renaming _id to movieId
-              userId: userData._id,
+              userId: userData.userId,
               isSelected:movie.isSelected
             }
             )
@@ -153,7 +142,7 @@ export default function Home() {
         }
         
         useEffect(()=>{
-          let cookieName={name:'token'}
+          let cookieName={name:'next-auth.session-token'}
           getCookieByName(cookieName).then((loggedInUserId)=>{  //fetch cookies first to get userId
             fetchMovies(loggedInUserId);
           }).catch((error)=>{
@@ -169,18 +158,10 @@ export default function Home() {
           
           <Loader showLoading={showLoader}/>
           
-          <div className={`${showLoader ? 'hidden' : 'block mx-auto h-screen max-w-7xl md:px-12'}`}>
+          <div className={`${showLoader ? 'hidden' : 'w-full bg-black mx-auto h-screen md:px-12'}`}>
           
-          <div className="my-4">
-          <div className="float-end items-center justify-center">
-          <img
-            src={userData.avatar}
-            alt=""
-            className="flex z-0 w-16 h-16 rounded-lg object-cover"
-           
-            />
-            <button className="flex mt-2 w-16 p-2  bg-white rounded-lg text-red-600" onClick={handleLogout}>Logout</button>
-          </div>
+          <div className="mx-[4rem]">
+          
           <h1 className="text-3xl font-bold">Our Team</h1>
           
           <p className="mt-2 text-white">

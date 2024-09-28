@@ -2,8 +2,7 @@
 
 import localFont from "next/font/local";
 import "./globals.css";
-import HamburgerMenuIcon from "@/components/HamburgerMenuIcon.jsx";
-import { Toaster } from 'react-hot-toast';
+import MovieHeader from "@/components/MovieHeader.js";
 import { StoreProvider } from "@/store/storeProvider";
 
 const geistSans = localFont({
@@ -21,6 +20,7 @@ export const metadata = {
   title: "Sharma Next App",
   description: "Sharma Next App",
 };
+console.log('inside layout');
 
 const RootLayout=({ children }) =>{
  
@@ -30,19 +30,16 @@ const RootLayout=({ children }) =>{
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >
-            
-            <Toaster />
+            <div className="flex w-full absolute z-50">
+              <MovieHeader/>
+
+            </div>
             <div className="flex">
-                  {/* Sidebar */}
-                  <HamburgerMenuIcon/>
                   {/* Main content */}
                   <div className="flex-1">
-                   
                     {children}
                   </div>
             </div>
-            
-          
           </body>
         </html>
     </StoreProvider>

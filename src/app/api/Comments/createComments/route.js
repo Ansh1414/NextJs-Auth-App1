@@ -29,8 +29,6 @@ export async function POST(NextRequest){
             
             //send verification email
 
-            
-
             return NextResponse.json({
                 message: "Comment created successfully",
                 success: true

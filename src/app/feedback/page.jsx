@@ -1,7 +1,8 @@
 "use client"
 import React from 'react'
 
-export default function page() {
+export default function page({searchParams}) {
+  console.log('searchParams--',searchParams);
   return (
     <section className="h-screen px-2 bg-black text-white">
       <div className="mx-auto max-w-7xl py-10">

@@ -1,17 +1,16 @@
-import React from 'react'
+const BrowserInfo=(sessionKey)=>{
+    
+    const sessionData = typeof window !== "undefined"?JSON.parse(sessionStorage.getItem(sessionKey)):null;
 
-const fetchUserFavMovies=(sessionKey)=>{
-    const movies = JSON.parse(sessionStorage.getItem(sessionKey));
-
-    if (movies) {
-    console.log('Movies retrieved from sessionStorage:', movies);
-    return movies;
+    if (sessionData) {
+    console.log('sessionData retrieved from sessionStorage:', sessionData);
+    return sessionData;
     } else {
-    console.log('No movies found in sessionStorage.');
+    console.log('No sessionData found in sessionStorage.');
     return null;
     }
 }
 
 export {
-    fetchUserFavMovies
+    BrowserInfo
 }

@@ -5,24 +5,34 @@ import { connect } from "@/dbConfig/dbConfig";//fetch images from cloudinary
 import { cookies } from 'next/headers'
 import jwt from "jsonwebtoken";
 import {User} from "@/models/userModel.js"
+import { getToken } from "next-auth/jwt";
 connect()
 export async function POST(NextRequest){
         try{
-            console.log('==in fetchUserId route---');
-            const reqBody = await NextRequest.json()
-            const {name} = reqBody
-            const cookieStore = cookies()
-            const token = cookieStore.get(name)
-            const decodeToken =  jwt.verify(token.value, process.env.TOKEN_SECRET);
-            const UserId=decodeToken.id;
-
-            //const user = await User.findOne({UserId})
-            const user = await User.findById(UserId).select('avatar');
-            console.log('avatar---',user);
+            const OAuthTokenJWT = await getToken({ req: NextRequest, secret: process.env.NEXTAUTH_SECRET });
+  
+            console.log('==in fetchUserId route new ---',OAuthTokenJWT);
+            
+            //const reqBody = await NextRequest.json()
+            //const {name} = reqBody
+            //const cookieStore = cookies()
+            //const token = cookieStore.get(name)!=null?cookieStore.get(name).value:'';
+            //console.log('==in fetchUserId route new --- token--',token);
+           // let decodeToken={};
+            /*if(token!=''){
+                 //decodeToken =  jwt.verify(token, process.env.NEXTAUTH_SECRET);
+                 //decodeToken= await decode({ token, secret: process.env.NEXTAUTH_SECRET });
+  
+            //console.log('---decodeOAuthTokenJWT--',decodeToken)
+            
+            }*/
+            
+            
+            
             const response = NextResponse.json({
                 message: "fetched userId successfully",
                 success: true,
-                userData:user,
+                userData:OAuthTokenJWT,
 
                 status:200
                 

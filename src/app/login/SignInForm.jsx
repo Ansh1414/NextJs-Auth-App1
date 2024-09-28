@@ -1,15 +1,40 @@
-import  { useState } from 'react'
+import React, { useEffect, useState } from "react"
+
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
+import Loader from '@/components/Loader.js';
+
+import { signIn, signOut,getProviders,getSession } from "next-auth/react";
+
+
 function SignInForm({getImage,onImageClick,onSignInAccount}) {
+  const [showLoader,setShowLoader]=useState(false)
+
+  const handleSigngleSignIn=async (providerId)=>{
+
+    console.log('handle Single sign on',providerId);
+    setShowLoader(true);
+    await signIn(providerId);
+    setShowLoader(false);
+  }
+  const [providers, setProviders] = useState('');
     const [user, setUser] = useState({
         email: "",
         password: "",
         username: "",
     })
+    useEffect(() => {
+      const setAuthProviders = async () => {
+        const res = await getProviders()
+        setProviders(res)
+      }
+      setAuthProviders()
+    }, [])
+
   return (
     <section>
+      <Loader showLoading={showLoader}/>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="relative flex items-end px-4 pb-10 pt-60 sm:px-6 sm:pb-16 md:justify-center lg:px-8 lg:pb-24">
           <div className="absolute inset-0">
@@ -173,7 +198,8 @@ function SignInForm({getImage,onImageClick,onSignInAccount}) {
               <button
                 type="button"
                 className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
-              >
+                onClick={() => handleSigngleSignIn(providers.google.id)}
+                >
                 <span className="mr-2 inline-block">
                   <svg
                     className="h-6 w-6 text-rose-500"

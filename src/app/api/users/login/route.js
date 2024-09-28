@@ -4,6 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/dbConfig/dbConfig";
 import {User} from "@/models/userModel.js"
 import jwt from "jsonwebtoken";
+import { encode } from "next-auth/jwt";
+
 connect()
 
 export async function POST(NextRequest){
@@ -15,13 +17,13 @@ export async function POST(NextRequest){
             console.log('inside api/users/login route-->',reqBody,' -- ',User);
 
             //check if user already exists
-            const user = await User.findOne({email}).select('-videos')
+            const user = await User.findOne({email}).select('-videos -fullName')
 
             if(!user){
                 console.log('doesnt know user--');
                 return NextResponse.json({error: "User dont exists",status:400})
             }
-            console.log('login route-->',user);
+            console.log('user login route-->',user);
 
             //check if password is correct
             const validPassword = await user.isPasswordCorrect(password);
@@ -32,26 +34,31 @@ export async function POST(NextRequest){
             
 
             const tokenData = {
-                id: user._id,
-                username: user.username,
-                email: user.email
+                userId: user._id,
+                picture:user.avatar
             }
             //create token
-            const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, {expiresIn: "1d"})
+            /*const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, {expiresIn: "1d"})
             console.log('token info--',token);
+            */
             const tokenOptions={
                 httpOnly: true, 
                 secure:true
             }
+            const encodedOAuthTokenJWT = await encode({ token: tokenData, secret: process.env.NEXTAUTH_SECRET });
+  
+            console.log('---encodedOAuthTokenJWT--',encodedOAuthTokenJWT)
+            
+            
             
             const response = NextResponse.json({
                 message: "User login successfully",
-                userId:user._id,
+                userData:{userId:user._id,picture:user.avatar},
                 success: true,
                 status:200
                 
             })
-            response.cookies.set("token", token, tokenOptions)
+            response.cookies.set("next-auth.session-token", encodedOAuthTokenJWT, tokenOptions)
 
             return response
             

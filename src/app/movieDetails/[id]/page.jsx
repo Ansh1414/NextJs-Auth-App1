@@ -36,7 +36,7 @@ function movieDetailWithId({params}) {
       
   return (
     <>
-    <MovieCard movie={movieDetail}/>
+    <MovieCard movie={movieDetail} userId={params.id}/>
   
 
     </>

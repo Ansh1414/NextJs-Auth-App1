@@ -1,4 +1,4 @@
-"use client"
+
 import { usePathname } from 'next/navigation';
 
 import { useState,useEffect } from 'react';
@@ -78,7 +78,7 @@ function NavBar () {
                                     <label className="px-3 text-l font-semibold uppercase text-gray-900">
                                         {item.pathname}
                                     </label>
-                                    </Link>
+                                </Link>
                                 
                             </li>
                         ))
