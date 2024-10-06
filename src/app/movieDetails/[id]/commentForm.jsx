@@ -100,7 +100,7 @@ function CommentForm({movieId}) {
       },[movieId])
 
   return (
-    <div>
+    <div >
     <Loader showLoading={showLoader}/>
     <form onSubmit={handleCommentSubmit}>
             <div>

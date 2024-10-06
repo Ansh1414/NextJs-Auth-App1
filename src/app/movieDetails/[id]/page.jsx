@@ -36,7 +36,10 @@ function movieDetailWithId({params}) {
       
   return (
     <>
-    <MovieCard movie={movieDetail} userId={params.id}/>
+    <div className="">
+      <MovieCard movie={movieDetail} userId={params.id}/>
+    </div>
+    
   
 
     </>

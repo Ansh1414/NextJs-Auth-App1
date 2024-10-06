@@ -43,6 +43,10 @@ const HamburgerMenuIcon = () => {
             pathname:'Feedback',
             path:'/feedback'
         },
+        {
+            pathname:'Payment',
+            path:'/payment'
+        },
 
     ]
     setMenuItems(menuOptions);
@@ -53,7 +57,7 @@ const HamburgerMenuIcon = () => {
     <>
     <div className="float-left px-2"> 
       {/* Hamburger / Close icon */}
-            <div onClick={toggleMenu} className=" fixed cursor-pointer top-16">
+            <div onClick={toggleMenu} className="fixed cursor-pointer top-16">
                 <span className='rounded-2xl p-2 font-bold w-24 h-10 bg-cyan-200 text-black text-xl'>Menu</span>
             </div>
             <div

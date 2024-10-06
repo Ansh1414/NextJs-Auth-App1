@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const Comments = ({ commentsData }) => {
+    // ## TODO : Jump to last on submit comment
     const [currentPage, setCurrentPage] = useState(1);
     const commentsPerPage = 5;
 

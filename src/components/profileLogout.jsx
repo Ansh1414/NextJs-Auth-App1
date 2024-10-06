@@ -1,28 +1,19 @@
 
 
-import React, { useState,useEffect, useCallback } from 'react';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import React, { useState,useEffect } from 'react';
 import { useRouter } from 'next/navigation'
-import {publicDomains} from '@/constants/Constants.js' 
-import {BrowserInfo} from '@/helpers/browserStorage.js';
-import { useSession } from "next-auth/react";
 import axios from 'axios'
 import Image from 'next/image';
-
-
+// ## TODO : Edit profile
+//
 const ProfileLogout = () => {
-  const { data: session, status } = useSession();
-  
-  console.log("useSession ProfileLogout--", session);
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
-  const publicPaths=publicDomains;
+  console.log('inside profileLogout');
+  
   const [menuItems,setMenuItems] = useState([]);
   const [userAvatar,setUserAvatar]=useState('/images/loader.png')
   const router = useRouter();
-
-  const isPublicPath = publicPaths.includes(pathname); 
+  
   
   
   const getCookieByName=async()=> {
@@ -42,13 +33,6 @@ const ProfileLogout = () => {
     
     
 }
-
-  // let fetchStoredValues='';
-
-  // if(fetchStoredValues==''){
-  //   fetchStoredValues= session?session.user?.image:'';//BrowserInfo('userProfile');
-  // }
-  // fetchStoredValues = fetchStoredValues || '/images/loader.png';
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -75,7 +59,6 @@ const ProfileLogout = () => {
         },
         {
             option:'edit Profile'
-            
         }
 
     ]
@@ -90,22 +73,21 @@ const ProfileLogout = () => {
     
     
     
-  }, [isPublicPath]); // Dependency array to update when pathname changes
+  }, []); // Dependency array to update when pathname changes
   
-  if(!isPublicPath){
+ 
   return (
     <>
-       
       <div className="float-right"> 
       {/* Hamburger / Close icon */}
+      
       <div onClick={toggleMenu} className="fixed cursor-pointer top-8 right-2 w-[4rem] h-[4rem]">
-      <Image
+      
+      <img
         src={userAvatar}
         alt="Profile Image"
         className="rounded-lg object-cover"
         sizes="(max-width: 768px) 25vw, (max-width: 1200px) 25vw, 10vw"
-        fill={true} 
-        priority // Add this property
       />
         </div>
         <div
@@ -140,7 +122,7 @@ const ProfileLogout = () => {
       
    
     
-  </>)}
+  </>)
        }
 
 

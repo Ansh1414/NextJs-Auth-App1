@@ -45,6 +45,7 @@ export const config = {
     '/signup',
     '/verifyemail',
     '/movies',
-    '/about'
+    '/about',
+    '/adminPrivalage/:path*'
   ]
 }

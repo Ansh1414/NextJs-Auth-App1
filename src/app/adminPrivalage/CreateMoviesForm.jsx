@@ -80,8 +80,14 @@ function CreateMoviesForm({onCreateMovie}) {
                    type="button"
                     className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                     onClick={()=>onCreateMovie(movie)}>
-                    Create Movies <ArrowRight className="ml-2" size={16} />
+                    Save <ArrowRight className="ml-2" size={16} />
                   </button>
+                  <Link
+                    href="/adminPrivalage/CreateCrewForm"
+                    className="mt-2 transition-all duration-200 inline-flex w-full items-center justify-center rounded-md bg-blue-600 px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-blue-700"
+                  >
+                    Create Crew Form
+                  </Link>
                 </div>
               </div>
             </form>

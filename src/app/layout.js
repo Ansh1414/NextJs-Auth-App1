@@ -2,8 +2,9 @@
 
 import localFont from "next/font/local";
 import "./globals.css";
-import MovieHeader from "@/components/MovieHeader.js";
+import MovieHeader from "@/components/MovieHeader.jsx";
 import { StoreProvider } from "@/store/storeProvider";
+import { NextResponse } from 'next/server'
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,7 +24,7 @@ export const metadata = {
 console.log('inside layout');
 
 const RootLayout=({ children }) =>{
- 
+  
   return (
     <StoreProvider>
         <html lang="en">
@@ -31,6 +32,7 @@ const RootLayout=({ children }) =>{
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >
             <div className="flex w-full absolute z-50">
+              
               <MovieHeader/>
 
             </div>

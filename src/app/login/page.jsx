@@ -41,7 +41,6 @@ function page() {
 
       console.log("Login success", response.data);
       if(response.data.status==200){
-       
         toast.success("Login success");
         router.push("/");
       }else{
