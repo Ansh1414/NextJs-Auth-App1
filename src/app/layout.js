@@ -4,7 +4,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import MovieHeader from "@/components/movieHeader.jsx";
 import { StoreProvider } from "@/store/storeProvider";
-import { NextResponse } from 'next/server'
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
