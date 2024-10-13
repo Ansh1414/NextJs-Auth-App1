@@ -1,7 +1,7 @@
 
 "use client"
 
-import Link from "next/link"
+
 import React,{useState} from "react"
 import axios from "axios"
 import {useRouter} from "next/navigation"
@@ -14,7 +14,7 @@ import Loader from '@/components/Loader.js';
 import { signIn, signOut,getProviders,getSession } from "next-auth/react";
 
 
-function page() {
+function Page() {
 
   const router = useRouter();
   const [showLoader,setShowLoader]=useState(false)
@@ -67,4 +67,4 @@ function page() {
     )
 }
 
-export default page
+export default Page

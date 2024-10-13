@@ -8,7 +8,7 @@ import CreateMoviesForm from "./CreateMoviesForm"
 
 
 
-function page() {
+function Page() {
   
 
 
@@ -60,4 +60,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

@@ -7,7 +7,7 @@ import CreateCrewForm from "./CreateCrewForm"
 // page to redirect adminPrivalage/CreateCrewForm
 
 
-function page() {
+function Page() {
   
 
 
@@ -60,4 +60,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

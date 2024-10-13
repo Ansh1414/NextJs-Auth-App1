@@ -3,7 +3,7 @@
 
 import React from "react"
 import Link from "next/link"
-function page() {
+function Page() {
   const [loading, setLoading] = React.useState(false)
   const [user,setUser] = React.useState({email:'',oldpassword:'',newPassword:''})
 
@@ -65,4 +65,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
