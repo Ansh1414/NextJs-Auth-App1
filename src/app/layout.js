@@ -5,6 +5,7 @@ import "./globals.css";
 import MovieHeader from "@/components/movieHeader.jsx";
 import { StoreProvider } from "@/store/storeProvider";
 
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
