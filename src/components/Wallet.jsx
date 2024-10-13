@@ -51,15 +51,14 @@ const Wallet = () => {
     <>
         
                       
-                        <div className="float-right mt-12 cursor-pointer" >
+        
             {/* <InputUI handleAddMoney={handleAddMoney}/> */}
-            <div>
-                <span className="text-white font-bold p-2 bg-amber-700 rounded-xl border-2 text-center hover:bg-blue-500 text-2xl" onClick={toggleMainWalletMenu}><span className="text-2xl">💎</span> ₹{fetchedBalance}</span>
-            </div>
-
+           
+            <span className="text-white font-bold p-2 bg-amber-700 rounded-xl  hover:bg-blue-500 text-2xl" onClick={toggleMainWalletMenu}><span className="text-2xl">💎</span> ₹{fetchedBalance}</span>
+           
             {
                 isMainWalletOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-black border border-gray-200 rounded-md shadow-lg z-10 ">
+                <div className="absolute right-12 text-start mt-2 w-48 bg-black border border-gray-200 rounded-md shadow-lg z-10 ">
                     <ul className="py-2">
                         <span className='text-2xl hover:border-slate-100 px-3 transform transition-transform duration-200 hover:scale-105 ' onClick={()=>(setIsMainWalletOpen(!isMainWalletOpen))}>{'⬅️'}</span>
                         <li className="px-4 py-2 hover:bg-gray-100 hover:text-black cursor-pointer" onClick={toggleAddMoneyMenu}>Deposit</li>
@@ -94,14 +93,14 @@ const Wallet = () => {
                         <li> <button className="align-middle p-2 mt-2 text-center bg-blue-500 w-1/2   text-white rounded-xl border-2 border-black" type="button" 
                         onClick={async ()=>{
                             const response=await handleAddPayment({amount});
-                            setShowMinNumberError(!response);
+                            setShowMinNumberError(false);
                             }}>
                                 Pay Now</button></li>
                         </ul>
                 </div>
                 
             )}
-        </div>
+        
         
         
     </>

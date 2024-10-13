@@ -19,13 +19,13 @@ export default function MovieHeader() {
       <>
       
           <Toaster />
-          <div className="fixed container">
+          <div className="fixed">
               <div className="grid grid-cols-2">
                 <div className="bg-transparent"><HamburgerMenuIcon/></div>
                 <div className="bg-transparent"><ProfileLogout/></div>
               </div>
-              <div className="float-right">
-                <div className="bg-transparent"><Wallet /></div>
+              <div className='w-screen mt-12 '>
+                <div className="bg-transparent text-end mr-24"><Wallet /></div>
               </div>
           </div>
           
