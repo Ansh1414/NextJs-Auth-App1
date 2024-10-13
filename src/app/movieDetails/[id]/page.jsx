@@ -4,6 +4,7 @@ import React,{useEffect, useState} from 'react'
 import axios from 'axios'
 import MovieCard from './movieCard';
 function MovieDetailWithId({params}) {
+  
     const router = useRouter();
     const [movieDetail,setmovieDetails]=useState({});
     const [showLoader,setShowLoader]=useState(false);
