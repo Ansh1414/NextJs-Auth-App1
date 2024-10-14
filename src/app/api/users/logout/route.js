@@ -22,7 +22,12 @@ export async function POST(NextRequest){
     
     // Loop through each cookie and delete it
     for (const cookie of cookies._parsed) {
-      console.log('--cookies 1--',cookie[0].trim())
+      const cookieName = cookie[0].trim();
+    console.log('--cookie name--', cookieName);
+     if (cookieName === '__Secure-next-auth.session-token') {
+      // Set the cookie to expire
+      response.cookies.delete(cookieName, { path: '/' }); // Adjust the path as needed
+    }
       response.cookies.delete('__Secure-next-auth.session-token');
     }
     return response;
