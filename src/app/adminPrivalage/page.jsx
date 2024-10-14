@@ -2,12 +2,9 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { toast } from "react-hot-toast";
-import CreateCrewForm from "./CreateCrewForm"
+import CreateMoviesForm from "./CreateMoviesForm"
 
-// page to redirect adminPrivalage/CreateCrewForm
-
-
-function page() {
+function Page() {
   
 
 
@@ -16,25 +13,23 @@ function page() {
 
   
   useEffect(()=>{
-    console.log('inside CreateCrewForm useeffect ');
+    console.log('inside CreateMoviesForm useeffect ');
   },[load])
   
-  const handleCreateCrew=async (crewMember)=>{
+  const handleCreateMovie=async (movie)=>{
    // setLoad('isLoading'); //to call useEffect again
-   console.log('inside handleCreateMovie--',crewMember);
+   console.log('inside handleCreateMovie--',movie);
    const formData = new FormData();
-   formData.append('personName', crewMember.personName);
-   formData.append('personRole', crewMember.personRole);
-   formData.append('movieName', crewMember.movieName);
-   
+   formData.append('moviename', movie.moviename);
+   formData.append('movieInformation', movie.movieInformation);
  
    // Append file if it exists
-   if (crewMember.personImage) {
-     formData.append('personImage', crewMember.personImage);
+   if (movie.coverImage) {
+     formData.append('coverImage', movie.coverImage);
    }
 
    try{
-      const response = await axios.post('/api/movieCrew/createMovieCrewData', formData, {
+      const response = await axios.post('/api/movies/createMoviesData', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -54,10 +49,11 @@ function page() {
       <>
        
         <div className="bg-white flex flex-col items-center justify-center min-h-screen py-2">
-          <CreateCrewForm onCreateCrew={handleCreateCrew}/>
+          <CreateMoviesForm onCreateMovie={handleCreateMovie}/>
         </div>
+        
       </>
   )
 }
 
-export default page
+export default Page
