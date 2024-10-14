@@ -1,5 +1,5 @@
 import { NextRequest,NextResponse } from "next/server";
-
+import { cookies } from 'next/headers'
 export async function POST(NextRequest){
   try{
 
@@ -25,8 +25,11 @@ export async function POST(NextRequest){
       const cookieName = cookie[0].trim();
     console.log('--cookie name--', cookieName);
      if (cookieName === '__Secure-next-auth.session-token') {
+       console.log('--cookie inside if --', cookieName);
+       
       // Set the cookie to expire
-      response.cookies.delete(cookieName, { path: '/' }); // Adjust the path as needed
+       response.cookies.delete(cookieName);
+       cookies().delete(cookieName);
     }
       response.cookies.delete('__Secure-next-auth.session-token');
     }
