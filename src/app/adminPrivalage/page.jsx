@@ -4,10 +4,13 @@ import axios from "axios"
 import { toast } from "react-hot-toast";
 import CreateMoviesForm from "./CreateMoviesForm"
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 1c102bd2e77824432f64902a602c83ecf6693012
 function Page() {
   
 

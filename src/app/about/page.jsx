@@ -36,4 +36,8 @@ function Page() {
   )
 }
 
+<<<<<<< HEAD
 export default Page
+=======
+export default Page
+>>>>>>> 1c102bd2e77824432f64902a602c83ecf6693012

@@ -8,7 +8,7 @@ import Loader from '@/components/Loader.js';
 
 
 
-function page() {
+function Page() {
   const [imageIndex, setImageIndex] = useState(0);
   const [showLoader,setShowLoader]=useState(false)
 
@@ -77,4 +77,4 @@ const handleImageChange = async()=>{
   )
 }
 
-export default page
+export default Page
