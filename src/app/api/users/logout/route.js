@@ -27,11 +27,9 @@ export async function POST(NextRequest){
       const cookieName = cookie[0].trim();
     console.log('--cookie name--', cookieName);
      if (cookieName === '__Secure-next-auth.session-token') {
-       console.log('--cookie inside if --', cookieName);
-       
+      console.log('--cookie inside if --', cookieName);
       // Set the cookie to expire
-       response.cookies.delete(cookieName);
-       cookies().delete(cookieName);
+      response.cookies.delete(cookieName);
       return response;
     }
     }
