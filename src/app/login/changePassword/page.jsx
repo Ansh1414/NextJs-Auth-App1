@@ -3,10 +3,6 @@
 
 import React from "react"
 import Link from "next/link"
-<<<<<<< HEAD
-=======
-
->>>>>>> 1c102bd2e77824432f64902a602c83ecf6693012
 function Page() {
   const [loading, setLoading] = React.useState(false)
   const [user,setUser] = React.useState({email:'',oldpassword:'',newPassword:''})
