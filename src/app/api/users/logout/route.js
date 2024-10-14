@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
+import { NextRequest,NextResponse } from "next/server";
 
-export async function POST(){
+export async function POST(NextRequest){
   try{
 
     /*working code 
@@ -16,8 +16,13 @@ export async function POST(){
 
     //const response = NextResponse.redirect(new URL('/login', request.url))
     const response = NextResponse.json({ message: 'Logout successfully' });
-    response.cookies.delete('next-auth.session-token')
-  
+    //response.cookies.delete('next-auth.session-token')
+    const cookies = NextRequest.cookies;
+   
+    // Loop through each cookie and delete it
+    for (const cookie of cookies._parsed) {
+      response.cookies.delete(cookie?cookie[0]:'');
+    }
     return response;
   }catch(error){
     console.log('--error in logout--',error)
