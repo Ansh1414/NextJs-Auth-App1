@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import React,{useEffect, useState} from 'react'
 import axios from 'axios'
 import MovieCard from './movieCard';
-function movieDetailWithId({params}) {
+function MovieDetailWithId({params}) {
     const router = useRouter();
     const [movieDetail,setmovieDetails]=useState({});
     const [showLoader,setShowLoader]=useState(false);
@@ -46,4 +46,4 @@ function movieDetailWithId({params}) {
   )
 }
 
-export default movieDetailWithId
+export default MovieDetailWithId
