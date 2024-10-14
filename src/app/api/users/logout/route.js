@@ -19,9 +19,9 @@ export async function POST(NextRequest){
     //response.cookies.delete('next-auth.session-token')
     const cookies = NextRequest.cookies;
     console.log('--cookies in logout--',cookies._parsed)
-    console.log('--cookies.u in logout--',cookies.u)
+    
     // Loop through each cookie and delete it
-    for (const cookie of cookies.u) {
+    for (const cookie of cookies._parsed) {
       console.log('--cookie 1--',cookie)
       response.cookies.delete(cookie?cookie[0]:'');
     }
