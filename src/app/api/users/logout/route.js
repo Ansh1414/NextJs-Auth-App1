@@ -22,7 +22,7 @@ export async function POST(NextRequest){
     
     // Loop through each cookie and delete it
     for (const cookie of cookies._parsed) {
-      console.log('--cookie 1--',cookie)
+      console.log('--cookie 1--',cookie[0])
       response.cookies.delete(cookie?cookie[0]:'');
     }
     return response;
