@@ -1,3 +1,4 @@
+"use server"
 import { NextRequest,NextResponse } from "next/server";
 import { cookies } from 'next/headers'
 export async function POST(NextRequest){
@@ -31,10 +32,10 @@ export async function POST(NextRequest){
       // Set the cookie to expire
        response.cookies.delete(cookieName);
        cookies().delete(cookieName);
+      return response;
     }
-      response.cookies.delete('__Secure-next-auth.session-token');
     }
-    return response;
+   
   }catch(error){
     console.log('--error in logout--',error)
     return NextResponse.json({message:error},{status: 500})
