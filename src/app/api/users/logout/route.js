@@ -29,12 +29,18 @@ export async function POST(NextRequest){
      if (cookieName === '__Secure-next-auth.session-token') {
       console.log('--cookie inside if --', cookieName);
       // Set the cookie to expire
-      const cookieOptions ={
-        httpOnly: true,
-        secure: true,
-        path: "/"
-      }
-      response.cookies.delete(cookieName,cookieOptions);
+      const cookieOptions = {
+        path: '/', // Make sure the path matches the original cookie
+        // You can include `domain` if necessary, e.g., domain: 'yourdomain.com'
+      };
+
+  // Delete the specific cookie by setting it with an expiration date in the past
+  response.cookies.set(cookieName, '', {
+    ...cookieOptions,
+    maxAge: -1, // Set maxAge to -1 to effectively delete the cookie
+    httpOnly: true,
+    secure: true,
+  });
       return response;
     }
     }
