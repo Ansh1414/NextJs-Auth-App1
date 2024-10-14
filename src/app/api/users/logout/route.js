@@ -3,6 +3,7 @@ import { cookies } from 'next/headers'
 export async function POST(NextRequest){
   try{
 
+    
     /*working code 
     const response = NextResponse.redirect(new URL('/login', request.url));
 
